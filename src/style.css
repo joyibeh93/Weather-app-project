@@ -4,11 +4,30 @@
     box-sizing: border-box;
 }
 
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 .weather-project {
-    width: 80%;
-    margin: 20px auto;
+    width: 65%;
+    margin: 10px auto;
     padding: 30px;
     border: 1px solid #dadde1;
+}
+
+.img-src img {
+    width: 70px;
+}
+
+.temp {
+    font-size: 40px;
+    margin-left: 15px;
+}
+
+.degrees sup {
+    display: inline-block;
+    font-size: 20px;
+    margin-top: 25px;
 }
 
 h1 {
@@ -22,9 +41,13 @@ h1 {
     display: flex;
 }
 
+.weather-description {
+    margin-top: 10px;
+}
+
 li {
     list-style: none;
     font-weight: 100px;
     line-height: 1em;
-    font-size: 18px;
+    font-size: 12px;
 }
