@@ -50,4 +50,5 @@ li {
     font-weight: 100px;
     line-height: 1em;
     font-size: 12px;
+    text-transform: capitalize;
 }
