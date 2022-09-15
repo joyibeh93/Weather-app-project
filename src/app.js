@@ -1,3 +1,26 @@
+function formatDate(timestamp) {
+    let date = new Date(timestamp);
+    let Hour = date.getHours();
+    if (Hour < 10) {
+        Hours = ` 0 $ { Hours }`;
+    }
+    let Minute = date.getMinutes();
+    if (Minute < 10) {
+        Minutes = ` 0${Minutes}`;
+    }
+    let days = [
+        'Sunday',
+        'Monday',
+        'Tuesday',
+        'wednesday',
+        'Thursday',
+        'Friday',
+        'Saturday',
+    ];
+    let day = days[date.getDay()];
+    return `${day} ${Hour}:${Minute}`;
+}
+
 function displayTemperature(response) {
     console.log(response.data);
     //displaying the temperature on the screen
@@ -15,9 +38,12 @@ function displayTemperature(response) {
     humidityElement.innerHTML = response.data.main.humidity;
     let windElement = document.querySelector('#wind');
     windElement.innerHTML = Math.round(response.data.wind.speed);
+    let dateElement = document.querySelector('#date');
+    dateElement.innerHTML = formatDate(response.data.dt * 1000);
 }
 
 let apiKey = 'e7ac5db1afc40d248972898a4bbd11e2';
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=Nigeria&appid=${apiKey}&units=metric`;
+let city = 'Paris';
+let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 console.log(apiUrl);
 axios.get(apiUrl).then(displayTemperature);

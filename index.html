@@ -23,10 +23,10 @@
                     <div class="col-md-8 weather-desc">
                         <div class="img-src">
                             <img src="https://ssl.gstatic.com/onebox/weather/64/rain_s_cloudy.png" alt="raining-icon" /><strong class="temp" id="temp">12</strong>
-                            <Span class="degrees"><sup>°C|°F</sup></Span>
+                            <Span class="degrees"><sup>°C| <a href="#" class="fahrenheit-link">°F</a></sup></Span>
                         </div>
                         <div class="col-md-4 weather-description">
-                            <ul>
+                            <ul class="weather-descrip">
                                 <!-- <li>Precipitaion 31%</li> -->
                                 <li>Humidity:<span id="humidity"></span>%</li>
                                 <li>wind:<span id="wind"></span>km/h</li>
@@ -36,7 +36,7 @@
                     <div class="col-md-4">
                         <h1 id="city"></h1>
                         <ul>
-                            <li>Friday 05:00</li>
+                            <li> Last Updated at : <span id="date"></span></li>
                             <li id="description">clear</li>
                         </ul>
                     </div>
