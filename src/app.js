@@ -51,8 +51,19 @@ function displayTemperature(response) {
     iconElement.setAttribute('alt', response.data.weather[0].description);
 }
 
-let apiKey = 'e7ac5db1afc40d248972898a4bbd11e2';
-let city = 'Nigeria';
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-console.log(apiUrl);
-axios.get(apiUrl).then(displayTemperature);
+function search(city) {
+    let apiKey = 'e7ac5db1afc40d248972898a4bbd11e2';
+    let cityName = 'Nigeria';
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(displayTemperature);
+}
+
+function handleSubmit(event) {
+    event.prevendDefault();
+    let cityInputElement = document.querySelector('#input-text');
+    console.log(cityInputElement.value);
+}
+search('Nigeria');
+
+let inputFormElement = document.querySelector('#input-form');
+inputFormElement.addEventListener('submit', handleSubmit);
