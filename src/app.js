@@ -6,7 +6,7 @@ function formatDate(timestamp) {
     }
     let Minute = date.getMinutes();
     if (Minute < 10) {
-        Minutes = ` 0${Minutes}`;
+        Minutes = ` 0${Minute}`;
     }
     let days = [
         'Sunday',
@@ -22,9 +22,10 @@ function formatDate(timestamp) {
 }
 
 function displayTemperature(response) {
-    console.log(response.data);
+    //console.log(response.data);
     //displaying the temperature on the screen
     let temperatureElement = document.querySelector('#temp');
+
     temperatureElement.innerHTML = Math.round(response.data.main.temp);
     //displaying the city on the screem
     let cityName = document.querySelector('#city');
@@ -38,12 +39,20 @@ function displayTemperature(response) {
     humidityElement.innerHTML = response.data.main.humidity;
     let windElement = document.querySelector('#wind');
     windElement.innerHTML = Math.round(response.data.wind.speed);
+    //getting the date using function
     let dateElement = document.querySelector('#date');
     dateElement.innerHTML = formatDate(response.data.dt * 1000);
+    //displaying the weather
+    let iconElement = document.querySelector('#icon');
+    iconElement.setAttribute(
+        'src',
+        `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+    );
+    iconElement.setAttribute('alt', response.data.weather[0].description);
 }
 
 let apiKey = 'e7ac5db1afc40d248972898a4bbd11e2';
-let city = 'Paris';
+let city = 'Nigeria';
 let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 console.log(apiUrl);
 axios.get(apiUrl).then(displayTemperature);
