@@ -27,6 +27,8 @@ function displayTemperature(response) {
     let temperatureElement = document.querySelector('#temp');
 
     temperatureElement.innerHTML = Math.round(response.data.main.temp);
+
+    celciusTemperature = temperatureElement.innerHTML; // i assign the result of the gotten to Celcius Temperature
     //displaying the city on the screem
     let cityName = document.querySelector('#city');
     cityName.innerHTML = response.data.name;
@@ -51,19 +53,42 @@ function displayTemperature(response) {
     iconElement.setAttribute('alt', response.data.weather[0].description);
 }
 
-function search(city) {
+function search(cityName) {
     let apiKey = 'e7ac5db1afc40d248972898a4bbd11e2';
-    let cityName = 'Nigeria';
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(displayTemperature);
 }
 
 function handleSubmit(event) {
-    event.prevendDefault();
-    let cityInputElement = document.querySelector('#input-text');
-    console.log(cityInputElement.value);
+    event.preventDefault();
+    let cityInputElement = document.querySelector('#city-input');
+    search(cityInputElement.value);
 }
-search('Nigeria');
+let celciusTemperature = '';
 
-let inputFormElement = document.querySelector('#input-form');
-inputFormElement.addEventListener('submit', handleSubmit);
+let form = document.querySelector('#search-form');
+form.addEventListener('submit', handleSubmit);
+
+// Using another medthod of working with functions
+let FahreheitLink = document.querySelector('#fahrenheit-link');
+FahreheitLink.addEventListener('click', function(e) {
+    e.preventDefault();
+    let temperatureElement = document.querySelector('#temp');
+    //remove active link fromm the celciuslink
+    celciusLink.classList.remove('active');
+    FahreheitLink.classList.add('active');
+
+    let fahreheitTemperature = (celciusTemperature * 9) / 5 + 32;
+    temperatureElement.innerHTML = Math.round(fahreheitTemperature);
+});
+
+let celciusLink = document.querySelector('#celcius-link');
+celciusLink.onclick = function() {
+    let temperatureElement = document.querySelector('#temp');
+    FahreheitLink.classList.remove('active');
+    celciusLink.classList.add('active');
+
+    temperatureElement.innerHTML = celciusTemperature;
+};
+
+search('Nigeria');

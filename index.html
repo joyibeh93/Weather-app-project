@@ -19,22 +19,21 @@
     <main>
         <div class="container">
             <div class="weather-project">
-                <form id="input-form" class="mb-3">
+                <form id="search-form" class="mb-3">
                     <div class="row">
-                        <div class="col-8">
-                            <input type="text" name="search" id="input-text" placeholder="Enter a city name" class="form-control">
+                        <div class="col-9">
+                            <input type="search" placeholder="Type a city.." class="form-control" id="city-input" autocomplete="off" />
                         </div>
-                        <div class="col-4">
-                            <input type="Submit" value="search" class="btn btn-primary" autocomplete="off">
+                        <div class="col-3">
+                            <input type="submit" value="Search" class="btn btn-primary w-100" />
                         </div>
-
                     </div>
                 </form>
                 <div class="row">
                     <div class="col-md-8 weather-desc">
                         <div class="img-src">
                             <img src="" alt="raining-icon" id="icon" /><strong class="temp" id="temp">12</strong>
-                            <Span class="degrees"><sup>°C| <a href="#" class="fahrenheit-link">°F</a></sup></Span>
+                            <Span class="degrees"><sup>  <a href="#" id="celcius-link" class="link active"> °C</a>| <a href="#" class="link" id="fahrenheit-link">°F</a></sup></Span>
                         </div>
                         <div class="col-md-4 weather-description">
                             <ul class="weather-descrip">
