@@ -1,3 +1,4 @@
+// function to convert days and time
 function formatDate(timestamp) {
     let date = new Date(timestamp);
     let Hour = date.getHours();
@@ -20,6 +21,8 @@ function formatDate(timestamp) {
     let day = days[date.getDay()];
     return `${day} ${Hour}:${Minute}`;
 }
+
+// FUNCTION TO DISPLAY TEMPERATURE
 
 function displayTemperature(response) {
     //console.log(response.data);
@@ -53,17 +56,20 @@ function displayTemperature(response) {
     iconElement.setAttribute('alt', response.data.weather[0].description);
 }
 
+// FUNCTION TO SERACH FOR CITY
+
 function search(cityName) {
     let apiKey = 'e7ac5db1afc40d248972898a4bbd11e2';
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(displayTemperature);
 }
-
+// FUNCTION SEARCH FOR CITY INPUTTED IN THE INPUT ELEMENT
 function handleSubmit(event) {
     event.preventDefault();
     let cityInputElement = document.querySelector('#city-input');
     search(cityInputElement.value);
 }
+
 let celciusTemperature = '';
 
 let form = document.querySelector('#search-form');
