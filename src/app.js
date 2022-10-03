@@ -54,6 +54,17 @@ function displayTemperature(response) {
         `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
     );
     iconElement.setAttribute('alt', response.data.weather[0].description);
+    getForecast(response.data.coord);
+}
+
+function getForecast(coordinates) {
+    // console.log(coordinates);
+    let apiKey = 'e7ac5db1afc40d248972898a4bbd11e2';
+    let apiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=33.44&lon=-94.04&exclude=hourly,daily&appid={API key}`;
+    console.log(apiUrl);
+    // let apiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
+    // let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+    // axios.get(apiUrl).then(displayForecast);
 }
 
 // FUNCTION TO  CITY FORCAST
@@ -69,7 +80,7 @@ function forcast() {
     <div class="col-2">
         <div class="weather-forcast-date">
 
-            ${day.toLocaleUpperCase()}
+            ${day.toUpperCase()}
         </div>
 
         <img src="https://openweathermap.org/img/wn/04d@2x.png" alt="weather-icon" width="40px">
