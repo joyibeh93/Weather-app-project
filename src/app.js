@@ -56,6 +56,36 @@ function displayTemperature(response) {
     iconElement.setAttribute('alt', response.data.weather[0].description);
 }
 
+// FUNCTION TO  CITY FORCAST
+
+function forcast() {
+    let forcastElement = document.querySelector('#forecast-daily-weather');
+    let forecastHtml = `<div class="row">`;
+    let days = ['thur', 'fri', 'sat', 'sun', 'mon', 'tue'];
+    days.forEach(function(day) {
+        forecastHtml =
+            forecastHtml +
+            `
+    <div class="col-2">
+        <div class="weather-forcast-date">
+
+            ${day.toLocaleUpperCase()}
+        </div>
+
+        <img src="https://openweathermap.org/img/wn/04d@2x.png" alt="weather-icon" width="40px">
+        <div class="weather-forcast-temperature">
+            <span class="weather-forcast-temperature-max">18°</span>
+            <span class="weather-forcast-temperature-min"> 12°</span>
+        </div>
+
+
+    </div>`;
+    });
+
+    forecastHtml = forecastHtml + `</div>`;
+    forcastElement.innerHTML = forecastHtml;
+}
+
 // FUNCTION TO SERACH FOR CITY
 
 function search(cityName) {
@@ -98,3 +128,4 @@ celciusLink.onclick = function() {
 };
 
 search('Nigeria');
+forcast();
