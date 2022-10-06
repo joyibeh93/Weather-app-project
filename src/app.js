@@ -57,6 +57,8 @@ function displayTemperature(response) {
     getForecast(response.data.coord);
 }
 
+//the daily weather forcast uses longitude and Laitude cordinates to get daily reports
+// thid is a function that get the longitude and latitude cor-ordinates
 function getForecast(coordinates) {
     // console.log(coordinates);
     let apiKey = 'e7ac5db1afc40d248972898a4bbd11e2';
@@ -64,31 +66,44 @@ function getForecast(coordinates) {
     axios.get(apiUrl).then(displayForcast);
 }
 
-// FUNCTION TO  CITY FORCAST
+function formatDay(timestamp) {
+    let date = new Date(timestamp * 1000);
+    let day = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+    let days = day[date.getDay()];
+    return days;
+}
+// FUNCTION TO GET THE DAILY WEATHER FORCAST CITY FORCAST
 
 function displayForcast(response) {
-    console.log(response.data.daily);
+    // console.log = response.data.daily;
+    let forcast = response.data.daily;
     let forcastElement = document.querySelector('#forecast-daily-weather');
     let forecastHtml = `<div class="row">`;
-    let days = ['thur', 'fri', 'sat', 'sun', 'mon', 'tue'];
-    days.forEach(function(day) {
-        forecastHtml =
-            forecastHtml +
-            `
+
+    forcast.forEach(function(forcastDay, index) {
+        if (index < 7) {
+            forecastHtml =
+                forecastHtml +
+                `
     <div class="col-2">
         <div class="weather-forcast-date">
 
-            ${day.toUpperCase()}
+            ${formatDay(forcastDay.dt)}
         </div>
 
-        <img src="https://openweathermap.org/img/wn/04d@2x.png" alt="weather-icon" width="40px">
+        <img src="https://openweathermap.org/img/wn/${
+            forcastDay.weather[0].icon
+        }@2x.png" alt="weather-icon" width="40px">
         <div class="weather-forcast-temperature">
-            <span class="weather-forcast-temperature-max">18°</span>
-            <span class="weather-forcast-temperature-min"> 12°</span>
+            <span class="weather-forcast-temperature-max">${Math.round(
+                forcastDay.temp.max
+            )}°</span>
+            <span class="weather-forcast-temperature-min"> ${Math.round(
+                forcastDay.temp.min
+            )}°</span>
         </div>
-
-
     </div>`;
+        }
     });
 
     forecastHtml = forecastHtml + `</div>`;

@@ -78,7 +78,7 @@ li:first-letter {
 /* DESIGNING THE WEATHER FORCAST FOR DIFFERENT DAYS */
 
 .weather-forcast {
-    margin-top: 20px;
+    margin-top: 10px;
     text-align: center;
     color: #baabba;
 }
