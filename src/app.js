@@ -75,12 +75,17 @@ function formatDay(timestamp) {
 // FUNCTION TO GET THE DAILY WEATHER FORCAST CITY FORCAST
 
 function displayForcast(response) {
-    // console.log = response.data.daily;
+    //console.log = response.data.daily;
     let forcast = response.data.daily;
     let forcastElement = document.querySelector('#forecast-daily-weather');
+    forcastElement.style.fontWeight='900';
+    forcastElement.style.color='#00ff00';
+   
     let forecastHtml = `<div class="row">`;
+    
 
     forcast.forEach(function(forcastDay, index) {
+  
         if (index < 6) {
             forecastHtml =
                 forecastHtml +
@@ -95,6 +100,8 @@ function displayForcast(response) {
             forcastDay.weather[0].icon
         }@2x.png" alt="weather-icon" width="40px">
         <div class="weather-forcast-temperature">
+        <p class="weather-humidity">${forcastDay.humidity}%<p>
+        
             <span class="weather-forcast-temperature-max">${Math.round(
                 forcastDay.temp.max
             )}°</span>
